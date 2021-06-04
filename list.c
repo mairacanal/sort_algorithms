@@ -5,6 +5,61 @@
 
 #include "list.h"
 
+// PRIVATE FUNCTION *************************************************************
+
+long partition(list *l, long begin, long end) {
+    
+    long pivot = l->elements[end];
+    long i = begin - 1;
+    elem aux;
+
+    for(long j = begin; j < end; j++) {
+        if (l->elements[j] < pivot) {
+
+            i++;
+
+            aux = l->elements[i];
+            l->elements[i] = l->elements[j];
+            l->elements[j] = aux;
+
+        }
+    }
+
+    aux = l->elements[i + 1];
+    l->elements[i + 1] = l->elements[end];
+    l->elements[end] = aux;
+
+    return i + 1;
+
+}
+
+long random_partition(list *l, long begin, long end) {
+
+    long k; 
+    elem aux;
+
+    k = begin + rand() % (end - begin + 1);
+
+    aux = l->elements[end];
+    l->elements[end] = l->elements[k];
+    l->elements[k] = aux;
+    
+    return partition(l, begin, end);
+
+}
+
+void recursive_quick_sort(list *l, long begin, long end) {
+    long pivot;
+
+    if (begin < end) {
+        pivot = random_partition(l, begin, end);
+        recursive_quick_sort(l, begin, pivot - 1);
+        recursive_quick_sort(l, pivot + 1, end);
+    }
+}
+
+// END PRIVATE FUNCTIONS ********************************************************
+
 void create_list(list* l) {
     l->size = 0;
     l->elements = malloc(sizeof(elem) *  TAM);
@@ -46,3 +101,6 @@ void print_list(list* l) {
 
 }
 
+void quick_sort(list *l) {
+    recursive_quick_sort(l, 0, l->size - 1);
+}
