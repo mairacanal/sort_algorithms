@@ -63,56 +63,6 @@ long random_partition(list *l, long begin, long end) {
  * 
  */
 
-void bubble_sortpiu(list* A, elem n){
-
-long i, j;
-elem auxiliar;
-    for (i=0;i<n-1;i++){
-        for(j=0;j<n-i-2;i++){
-            if (A->elements[j]> A->elements[j+1]){
-                auxiliar = A->elements[i];
-                A->elements[i] = A->elements[i+1];
-                A->elements[i+1] = auxiliar;
-            }
-        j = j+1;
-        }
-    i = i+1;
-    }
-}
-
-/*
- * 
- * 
- */
-
-void optimized_bubble_sortpiu(list* A, elem n){
-
-long i,j,ordenado;
-elem auxiliar;
-    while (ordenado == 1){
-        for (i=0;i<n-1;i++){
-            for(j=0;j<n-i-2;i++){
-                if (A->elements[j]> A->elements[j+1]){
-                    ordenado = 0;
-                    auxiliar = A->elements[i];
-                    A->elements[i] = A->elements[i+1];
-                    A->elements[i+1] = auxiliar;
-                }
-            j = j+1;
-            }
-            if (ordenado == 1){
-                break;
-            }
-        i = i+1;
-        }
-    }
-}
-
-/*
- * 
- * 
- */
-
 void recursive_quick_sort(list *l, long begin, long end) {
     long pivot;
 
@@ -199,7 +149,19 @@ void quick_sort(list *l) {
  */
 
 void bubble_sort(list *l){
-    bubble_sortpiu(l, l->size-1);
+    elem aux;
+
+    for (long i = 0; i < l->size - 1; i++) {
+        for(long j = 0; j < l->size - i - 1; j++){
+            if (l->elements[j] > l->elements[j+1]){
+                aux = l->elements[j];
+                l->elements[j] = l->elements[j+1];
+                l->elements[j+1] = aux;
+            }
+        }
+    }
+
+    return;
 }
 
 /*
@@ -208,5 +170,23 @@ void bubble_sort(list *l){
  */
 
 void optimized_bubble_sort(list *l){
-    optimized_bubble_sortpiu(l, l->size-1);
+    int swapped = 1;
+    elem aux;
+
+    for (long i = 0; i < l->size - 1; i++) {
+        for(long j = 0; j < l->size - i - 1; j++) {
+            if (l->elements[j] > l->elements[j+1]) {
+                swapped = 0;
+
+                aux = l->elements[j];
+                l->elements[j] = l->elements[j+1];
+                l->elements[j+1] = aux;
+
+            }
+        }
+        if (swapped) break;
+        swapped = 1;
+    }
+
+    return;
 }
