@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TAM 100000
+#define TAM 10000000
 
 typedef int elem;
 typedef struct {
