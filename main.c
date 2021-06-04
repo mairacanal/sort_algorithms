@@ -25,7 +25,9 @@ int main(void) {
             //print_list(&l);
 
             time_start = clock();
-            quick_sort(&l);
+            //quick_sort(&l);
+            //bubble_sort(&l);
+            //optimized_bubble_sort(&l);   
             times_add += clock() - time_start;
 
             //print_list(&l);
@@ -37,7 +39,6 @@ int main(void) {
         printf("Tamanho: %ld Tempo total: %.10f\n", (long) pow(10, ord), (times_add / (float) REP)/CLOCKS_PER_SEC);
 
     }
-
     return 0;
 
 }
