@@ -11,7 +11,7 @@
 typedef int elem;
 typedef struct {
     elem *elements;
-    long tam;
+    long size;
 } list;
 
 void create_list(list* l);
