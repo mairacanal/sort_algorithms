@@ -13,6 +13,7 @@ void random_numbers(list *l, long size, long max);
 void growing_numbers(list *l, long size, long max);
 void declining_numbers(list *l, long size, long max);
 void analysis(void (*sort)(list *), void (*numbers)(list *, long, long));
+void testing_routine(void (*sort)(list *), long size, long max);
 
 int main(void) {
     
@@ -88,5 +89,20 @@ void analysis(void (*sort)(list *), void (*numbers)(list *, long, long)) {
         printf("Tamanho: %ld Tempo total: %.10f\n", (long) pow(10, ord), (time_sum / (float) REP)/CLOCKS_PER_SEC);
 
     }
+
+}
+
+void testing_routine(void (*sort)(list *), long size, long max) {
+
+    list l;
+
+    create_list(&l);
+
+    random_numbers(&l, size, max);
+    print_list(&l);
+    sort(&l);
+    print_list(&l);
+
+    destroy_list(&l);
 
 }
