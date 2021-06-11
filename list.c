@@ -73,6 +73,59 @@ void recursive_quick_sort(list *l, long begin, long end) {
     }
 }
 
+/*
+ * 
+ * 
+ */
+
+long max_element(list* l) {
+
+    long max = 0;
+
+    for (long i = 0; i < l->size; i++) {
+        if(l->elements[i] > max)
+            max = l->elements[i];
+    }
+
+    return max;
+}
+
+/*
+ * 
+ * 
+ */
+
+void counting_sort(list *l, long position) {
+
+    int k = 10;
+    long *count = (long *) calloc(k, sizeof(long));
+    long *final = (long *) calloc(l->size, sizeof(long));
+    long key;
+
+    for(int i = 0; i < l->size; i++) {
+        key = l->elements[i]/position;
+        key = key % 10;
+        count[key]++;
+    }
+
+    for(int i = 1; i < k; i++) 
+        count[i] += count[i - 1];
+
+    for(int i = (l->size - 1); i >= 0; i--) {
+        key = l->elements[i]/position;
+        key = key % 10;
+        count[key]--;
+        final[count[key]] = l->elements[i];
+    }
+
+    for(int i = 0; i < l->size; i++) 
+        l->elements[i] = final[i];
+
+    free(count);
+    free(final);
+
+}
+
 // END PRIVATE FUNCTIONS ********************************************************
 
 /*
@@ -189,4 +242,23 @@ void optimized_bubble_sort(list *l){
     }
 
     return;
+}
+
+/*
+ * 
+ * 
+ */
+
+void radix_sort(list* l) {
+
+    long max = max_element(l);
+    long position = 1;
+    
+    while (max/position > 0) {
+        
+        counting_sort(l, position);
+        position *= 10;
+
+    }
+
 }
