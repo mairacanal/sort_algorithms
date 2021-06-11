@@ -7,7 +7,7 @@
 #include <math.h>
 #include "list.h"
 
-#define REP 10
+#define REP 1
 
 void random_numbers(list *l, long size, long max);
 void growing_numbers(list *l, long size, long max);
@@ -17,13 +17,13 @@ void analysis(void (*sort)(list *), void (*numbers)(list *, long, long));
 int main(void) {
     
     printf("ORDEM ALEATÓRIA\n");
-    analysis(quick_sort, random_numbers);
+    analysis(bubble_sort, random_numbers);
 
     printf("ORDEM CRESCENTE\n");
-    analysis(quick_sort, growing_numbers);
+    analysis(bubble_sort, growing_numbers);
 
     printf("ORDEM DECRESCENTE\n");
-    analysis(quick_sort, declining_numbers);
+    analysis(bubble_sort, declining_numbers);
 
     return 0;
 
