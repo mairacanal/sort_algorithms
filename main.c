@@ -7,7 +7,7 @@
 #include <math.h>
 #include "list.h"
 
-#define REP 10
+#define REP 1
 
 #define BUBBLE_SIZE 100000
 #define QUICK_SIZE 100000000

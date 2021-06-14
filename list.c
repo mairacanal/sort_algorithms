@@ -19,6 +19,7 @@ long partition(list *l, long begin, long end) {
     elem aux;
 
     for(long j = begin; j < end; j++) {
+        
         if (l->elements[j] < pivot) {
 
             i++;
@@ -28,6 +29,7 @@ long partition(list *l, long begin, long end) {
             l->elements[j] = aux;
 
         }
+
     }
 
     aux = l->elements[i + 1];
@@ -224,12 +226,14 @@ void bubble_sort(list *l){
  */
 
 void optimized_bubble_sort(list *l){
+
     int swapped = 1;
     elem aux;
 
     for (long i = 0; i < l->size - 1; i++) {
         for(long j = 0; j < l->size - i - 1; j++) {
             if (l->elements[j] > l->elements[j+1]) {
+
                 swapped = 0;
 
                 aux = l->elements[j];
@@ -243,6 +247,7 @@ void optimized_bubble_sort(list *l){
     }
 
     return;
+
 }
 
 /*
