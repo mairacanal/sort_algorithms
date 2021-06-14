@@ -6,15 +6,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TAM 10000000
-
 typedef int elem;
 typedef struct {
     elem *elements;
     long size;
+    long max_size;
 } list;
 
-void create_list(list* l);
+void create_list(list* l, long max);
 void destroy_list(list* l);
 int insert_list(list* l, elem e);
 void print_list(list* l);

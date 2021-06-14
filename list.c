@@ -133,9 +133,10 @@ void counting_sort(list *l, long position) {
  * 
  */
 
-void create_list(list* l) {
+void create_list(list* l, long max) {
     l->size = 0;
-    l->elements = malloc(sizeof(elem) *  TAM);
+    l->max_size = max;
+    l->elements = malloc(sizeof(elem) *  max);
     return;
 }
 
@@ -157,7 +158,7 @@ void destroy_list(list* l) {
 
 int insert_list(list* l, elem e) {
     
-    if (l->size == TAM) {
+    if (l->size == l->max_size) {
         return 1; 
     }
     l->elements[l->size] = e;
