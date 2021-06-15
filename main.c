@@ -7,9 +7,10 @@
 #include <math.h>
 #include "list.h"
 
-#define REP 1
+#define REP 10
 
 #define BUBBLE_SIZE 100000
+#define OP_BUBBLE_SIZE 100000000
 #define QUICK_SIZE 100000000
 #define RADIX_SIZE 100000000
 #define HEAP_SIZE 100000
@@ -34,13 +35,13 @@ int main(void) {
 
     printf("BUBBLE SORT APRIMORADO\n");
     printf("ORDEM ALEATÓRIA\n");
-    analysis(optimized_bubble_sort, random_numbers, BUBBLE_SIZE);
+    analysis(optimized_bubble_sort, random_numbers, OP_BUBBLE_SIZE);
 
     printf("ORDEM CRESCENTE\n");
-    analysis(optimized_bubble_sort, growing_numbers, BUBBLE_SIZE);
+    analysis(optimized_bubble_sort, growing_numbers, OP_BUBBLE_SIZE);
 
     printf("ORDEM DECRESCENTE\n");
-    analysis(optimized_bubble_sort, declining_numbers, BUBBLE_SIZE);
+    analysis(optimized_bubble_sort, declining_numbers, OP_BUBBLE_SIZE);
 
     printf("QUICK SORT\n");
     printf("ORDEM ALEATÓRIA\n");
