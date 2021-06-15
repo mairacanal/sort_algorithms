@@ -12,6 +12,7 @@
 #define BUBBLE_SIZE 100000
 #define QUICK_SIZE 100000000
 #define RADIX_SIZE 100000000
+#define HEAP_SIZE 100000
 
 void random_numbers(list *l, long size, long max);
 void growing_numbers(list *l, long size, long max);
@@ -61,9 +62,24 @@ int main(void) {
     printf("ORDEM DECRESCENTE\n");
     analysis(radix_sort, declining_numbers, RADIX_SIZE);
 
+    printf("HEAP SORT\n");
+    printf("ORDEM ALEATÓRIA\n");
+    analysis(heapsort, random_numbers, HEAP_SIZE);
+
+    printf("ORDEM CRESCENTE\n");
+    analysis(heapsort, growing_numbers, HEAP_SIZE);
+
+    printf("ORDEM DECRESCENTE\n");
+    analysis(heapsort, declining_numbers, HEAP_SIZE);
+
     return 0;
 
 }
+
+
+/*
+ * Insert random numbers on list 
+ */
 
 void random_numbers(list *l, long size, long max) {
 
@@ -72,12 +88,19 @@ void random_numbers(list *l, long size, long max) {
 
 }
 
+
+/* Insert growing numbers on list 
+ */
+
 void growing_numbers(list *l, long size, long max) {
 
     random_numbers(l, size, max);
     quick_sort(l);
 
 }
+
+/* Insert declining numbers on list 
+ */
 
 void declining_numbers(list *l, long size, long max) {
 
@@ -95,8 +118,11 @@ void declining_numbers(list *l, long size, long max) {
         l->elements[i] = aux.elements[i];
 
     destroy_list(&aux);
-
 }
+
+/* 
+ *  Analyze the execution time by at least 10 times according to the algorithm and sorting 
+ */
 
 void analysis(void (*sort)(list *), void (*numbers)(list *, long, long), long max) {
 

@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int elem;
+typedef int elem;  
 typedef struct {
     elem *elements;
     long size;
