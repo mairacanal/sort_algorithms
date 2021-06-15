@@ -133,23 +133,21 @@ void counting_sort(list *l, long position) {
  * 
  */
 
-void Heapify(list* l, elem size, elem e){
+void Heapify(list* l, long size, elem e) {
 
-    int bigger = e;
-    int left = ( 2 * e ) + 1;
-    int right  = ( 2 * e ) + 2;
-    elem aux;
+    long bigger = e;
+    long left = ( 2 * e ) + 1;
+    long right  = ( 2 * e ) + 2;
 
-    if (( left < size ) && (  l->elements[left] >  l->elements[bigger] ) )  bigger = left;
+    if (( left < size ) && ( l->elements[left] > l->elements[bigger] ))  bigger = left;
      
-    if (( right  < size ) && (  l->elements[right]  >  l->elements[bigger] ) )  bigger = right;
+    if (( right < size ) && ( l->elements[right] > l->elements[bigger] ))  bigger = right;
 
-    if (bigger != e){
-
+    if (bigger != e) {
         swap(l->elements, bigger, e);
-        Heapify ( l, size, bigger);
-    
+        Heapify (l, size, bigger);
     }
+
 }
 
 // END PRIVATE FUNCTIONS ********************************************************
@@ -289,16 +287,12 @@ void radix_sort(list* l) {
 
 void heapsort(list* l) {
 
-    elem aux;
-    int i;
-
-    for(i = ( l->size/2 - 1 ); i >= 0; i--){
+    for (long i = ( l->size/2 - 1 ); i >= 0; i--)
         Heapify( l, l->size, i);
-    } 
 
-    for(i = l->size-1; i >= 1; i--){
-        
+    for (long i = l->size-1; i >= 1; i--) {
         swap(l->elements, 0, i);
         Heapify(l, i, 0);
     }
+
 }
