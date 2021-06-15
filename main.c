@@ -154,6 +154,9 @@ void analysis(void (*sort)(list *), void (*numbers)(list *, long, long), long ma
 
 }
 
+/* Algorithm to test the subfunctions to be compiled in the main
+ */
+
 void testing_routine(void (*sort)(list *), long size, long max) {
 
     list l;
