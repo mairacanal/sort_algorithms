@@ -12,30 +12,34 @@
  * 
  */
 
+void swap(elem* vec, long idx1, long idx2) {
+
+    elem aux;
+
+    aux = vec[idx1];
+    vec[idx1] = vec[idx2];
+    vec[idx2] = aux;
+
+}
+
+/*
+ * 
+ * 
+ */
+
 long partition(list *l, long begin, long end) {
     
     long pivot = l->elements[end];
     long i = begin - 1;
-    elem aux;
 
     for(long j = begin; j < end; j++) {
-        
         if (l->elements[j] < pivot) {
-
             i++;
-
-            aux = l->elements[i];
-            l->elements[i] = l->elements[j];
-            l->elements[j] = aux;
-
+            swap(l->elements, i, j);
         }
-
     }
 
-    aux = l->elements[i + 1];
-    l->elements[i + 1] = l->elements[end];
-    l->elements[end] = aux;
-
+    swap(l->elements, i + 1, end);
     return i + 1;
 
 }
@@ -48,14 +52,10 @@ long partition(list *l, long begin, long end) {
 long random_partition(list *l, long begin, long end) {
 
     long k; 
-    elem aux;
 
     k = begin + rand() % (end - begin + 1);
 
-    aux = l->elements[end];
-    l->elements[end] = l->elements[k];
-    l->elements[k] = aux;
-    
+    swap(l->elements, k, end);
     return partition(l, begin, end);
 
 }
@@ -127,6 +127,7 @@ void counting_sort(list *l, long position) {
     free(final);
 
 }
+
 
 // END PRIVATE FUNCTIONS ********************************************************
 
@@ -205,17 +206,11 @@ void quick_sort(list *l) {
  */
 
 void bubble_sort(list *l){
-    elem aux;
 
-    for (long i = 0; i < l->size - 1; i++) {
-        for(long j = 0; j < l->size - i - 1; j++){
-            if (l->elements[j] > l->elements[j+1]){
-                aux = l->elements[j];
-                l->elements[j] = l->elements[j+1];
-                l->elements[j+1] = aux;
-            }
-        }
-    }
+    for (long i = 0; i < l->size - 1; i++) 
+        for(long j = 0; j < l->size - i - 1; j++)
+            if (l->elements[j] > l->elements[j+1])
+                swap(l->elements, j, j + 1);
 
     return;
 }
@@ -228,18 +223,12 @@ void bubble_sort(list *l){
 void optimized_bubble_sort(list *l){
 
     int swapped = 1;
-    elem aux;
 
     for (long i = 0; i < l->size - 1; i++) {
         for(long j = 0; j < l->size - i - 1; j++) {
             if (l->elements[j] > l->elements[j+1]) {
-
                 swapped = 0;
-
-                aux = l->elements[j];
-                l->elements[j] = l->elements[j+1];
-                l->elements[j+1] = aux;
-
+                swap(l->elements, j, j + 1);
             }
         }
         if (swapped) break;
