@@ -23,7 +23,7 @@ void swap(elem* vec, long idx1, long idx2) {
 
 /*
  * Partitions the vector through the pivot
- * \return pivot
+ * @return pivot
  */
 
 long partition(list *l, long begin, long end) {
@@ -44,7 +44,7 @@ long partition(list *l, long begin, long end) {
 }
 
 /*   
- *   Generates a random index between the values of the list vector 
+ * Generates a random index between the values of the list vector 
  * and partitions the vector through this exchange.
  */
 
@@ -87,7 +87,7 @@ long max_element(list* l) {
     return max;
 }
 
-/* Counting sort application */
+/* Counting sort function */
 
 void counting_sort(list *l, long position) {
 
@@ -150,7 +150,7 @@ void create_list(list* l, long max) {
     return;
 }
 
-/* Frees to vector space */
+/* Free all allocated memory */
 
 void destroy_list(list* l) {
     free(l->elements);
@@ -191,7 +191,7 @@ void print_list(list* l) {
 
 
 
-/* Bubble Sort aplication */
+/* Bubble Sort function */
 
 void bubble_sort(list *l) {
 
@@ -236,7 +236,7 @@ void quick_sort(list *l) {
     recursive_quick_sort(l, 0, l->size - 1);
 }
 
-/* Radix Sort application */
+/* Radix Sort function */
 
 void radix_sort(list* l) {
 
@@ -253,7 +253,7 @@ void radix_sort(list* l) {
 }
 
 
-/* Heapsort Application */
+/* Heapsort function */
 
 void heapsort(list* l) {
 
@@ -266,6 +266,8 @@ void heapsort(list* l) {
     }
 
 }
+
+/* Insertion Sort function */
 
 void insertion_sort(list* l) {
 
@@ -281,6 +283,8 @@ void insertion_sort(list* l) {
 
 }
 
+/* Selection Sort function */
+
 void selection_sort(list* l) {
     
     long key;
@@ -295,6 +299,8 @@ void selection_sort(list* l) {
     }
 
 }
+
+/* Shell Sort function */
 
 void shell_sort(list* l) {
 
