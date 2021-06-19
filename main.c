@@ -10,7 +10,6 @@
 #define REP 10
 
 #define BUBBLE_SIZE 100000
-#define OP_BUBBLE_SIZE 100000000
 #define QUICK_SIZE 100000000
 #define RADIX_SIZE 100000000
 #define HEAP_SIZE 100000
@@ -35,13 +34,13 @@ int main(void) {
 
     printf("BUBBLE SORT APRIMORADO\n");
     printf("ORDEM ALEATÓRIA\n");
-    analysis(optimized_bubble_sort, random_numbers, OP_BUBBLE_SIZE);
+    analysis(optimized_bubble_sort, random_numbers, BUBBLE_SIZE);
 
     printf("ORDEM CRESCENTE\n");
-    analysis(optimized_bubble_sort, growing_numbers, OP_BUBBLE_SIZE);
+    analysis(optimized_bubble_sort, growing_numbers, BUBBLE_SIZE);
 
     printf("ORDEM DECRESCENTE\n");
-    analysis(optimized_bubble_sort, declining_numbers, OP_BUBBLE_SIZE);
+    analysis(optimized_bubble_sort, declining_numbers, BUBBLE_SIZE);
 
     printf("QUICK SORT\n");
     printf("ORDEM ALEATÓRIA\n");
@@ -79,7 +78,9 @@ int main(void) {
 
 
 /*
- * Insert random numbers on list 
+ * @params long size - the list generated must have the size of this param
+ *         long max - the numbers inserted must be smaller the this param
+ * @brief Insert random numbers on list.
  */
 
 void random_numbers(list *l, long size, long max) {
@@ -90,7 +91,10 @@ void random_numbers(list *l, long size, long max) {
 }
 
 
-/* Insert growing numbers on list 
+/*
+ * @params long size - the list generated must have the size of this param
+ *         long max - the numbers inserted must be smaller the this param
+ * @brief Insert growing numbers on list 
  */
 
 void growing_numbers(list *l, long size, long max) {
@@ -100,7 +104,10 @@ void growing_numbers(list *l, long size, long max) {
 
 }
 
-/* Insert declining numbers on list 
+/*
+ * @params long size - the list generated must have the size of this param
+ *         long max - the numbers inserted must be smaller the this param
+ * @brief Insert declining numbers on list 
  */
 
 void declining_numbers(list *l, long size, long max) {
@@ -119,10 +126,14 @@ void declining_numbers(list *l, long size, long max) {
         l->elements[i] = aux.elements[i];
 
     destroy_list(&aux);
+
 }
 
 /* 
- *  Analyze the execution time by at least 10 times according to the algorithm and sorting 
+ * @params void (*sort)(list *) - sorting function
+ *         void (*numbers)(list *, long, long) - number generetor function
+ *         long max - maximum size of array analyzed
+ * @brief Analyze the execution time 10 times according to the algorithm and sorting 
  */
 
 void analysis(void (*sort)(list *), void (*numbers)(list *, long, long), long max) {
@@ -154,7 +165,11 @@ void analysis(void (*sort)(list *), void (*numbers)(list *, long, long), long ma
 
 }
 
-/* Algorithm to test the subfunctions to be compiled in the main
+/*
+ * @params void (*sort)(list *) - sorting function
+ *         long size - Size of the generated list
+ *         long max - Size of the maximum element of the list
+ * @brief Algorithm to test the sort function during development
  */
 
 void testing_routine(void (*sort)(list *), long size, long max) {
