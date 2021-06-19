@@ -43,7 +43,8 @@ long partition(list *l, long begin, long end) {
 
 }
 
-/*   Generates a random index between the values of the list vector 
+/*   
+ *   Generates a random index between the values of the list vector 
  * and partitions the vector through this exchange.
  */
 
@@ -58,7 +59,8 @@ long random_partition(list *l, long begin, long end) {
 
 }
 
-/* Divides the vector into two and applies the recursive quick sort to each
+/*   
+ * Divides the vector into two and applies the recursive quick sort to each
  */
 
 void recursive_quick_sort(list *l, long begin, long end) {
@@ -71,8 +73,7 @@ void recursive_quick_sort(list *l, long begin, long end) {
     }
 }
 
-/* Finds the largest element of a vector
- */
+/* Finds the largest element of a vector */
 
 long max_element(list* l) {
 
@@ -86,8 +87,7 @@ long max_element(list* l) {
     return max;
 }
 
-/* Counting sort application
- */
+/* Counting sort application */
 
 void counting_sort(list *l, long position) {
 
@@ -120,8 +120,7 @@ void counting_sort(list *l, long position) {
 
 }
 
-/* Orders the Heap
- */
+/* Orders the Heap */
 
 void Heapify(list* l, long size, elem e) {
 
@@ -142,8 +141,7 @@ void Heapify(list* l, long size, elem e) {
 
 // END PRIVATE FUNCTIONS ********************************************************
 
-/* Allocates space for list creation of a max size
- */
+/* Allocates space for list creation of a max size */
 
 void create_list(list* l, long max) {
     l->size = 0;
@@ -152,8 +150,7 @@ void create_list(list* l, long max) {
     return;
 }
 
-/* Frees to input vector space 
- */
+/* Frees to vector space */
 
 void destroy_list(list* l) {
     free(l->elements);
@@ -161,8 +158,7 @@ void destroy_list(list* l) {
     return;
 }
 
-/*  Insertion of the value and for the lease l->size
- */
+/*  Insertion of the value and for the lease l->size */
 
 int insert_list(list* l, elem e) {
     
@@ -176,8 +172,7 @@ int insert_list(list* l, elem e) {
 
 }
 
-/*  Printing vector going from 0 up to its size
- */
+/*  Printing vector going from 0 up to its size */
 
 void print_list(list* l) {
 
@@ -196,8 +191,7 @@ void print_list(list* l) {
 
 
 
-/* Bubble Sort aplication 
- */
+/* Bubble Sort aplication */
 
 void bubble_sort(list *l) {
 
@@ -209,8 +203,9 @@ void bubble_sort(list *l) {
     return;
 }
 
-/*   Bubble sort with the swapped condition that undoes 
- *the looping of "i" if an exchange not for held
+/*   
+ *   Bubble sort with the swapped condition that undos 
+ *   the looping of "i" if an exchange not for held
  */
 
 void optimized_bubble_sort(list *l) {
@@ -232,16 +227,16 @@ void optimized_bubble_sort(list *l) {
 
 }
 
-/*   Quick sort function call with the index defined
- * by the size of the main 
+/*   
+ *   Quick sort function call with the index defined
+ *   by the size of the main 
  */
 
 void quick_sort(list *l) {
     recursive_quick_sort(l, 0, l->size - 1);
 }
 
-/* Radix Sort application 
- */
+/* Radix Sort application */
 
 void radix_sort(list* l) {
 
@@ -258,8 +253,7 @@ void radix_sort(list* l) {
 }
 
 
-/* Heapsort Application
- */
+/* Heapsort Application */
 
 void heapsort(list* l) {
 
@@ -270,5 +264,29 @@ void heapsort(list* l) {
         swap(l->elements, 0, i);
         Heapify(l, i, 0);
     }
+
+}
+
+void insertion_sort(list* l) {
+
+
+}
+
+void selection_sort(list* l) {
+    
+    long key;
+
+    for(long i = 0; i < l->size; i++) {
+        key = i;
+        for (long j = i + 1; j < l->size; j++) {
+            if (l->elements[j] < l->elements[key])
+                key = j;
+        }
+        swap(l->elements, i, key);
+    }
+
+}
+
+void shell_sort(list* l) {
 
 }

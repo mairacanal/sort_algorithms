@@ -22,3 +22,6 @@ void optimized_bubble_sort(list *l);
 void quick_sort(list* l);
 void radix_sort(list* l);
 void heapsort(list* l);
+void insertion_sort(list* l);
+void selection_sort(list* l);
+void shell_sort(list* l);
