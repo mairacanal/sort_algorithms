@@ -25,3 +25,5 @@ void heapsort(list* l);
 void insertion_sort(list* l);
 void selection_sort(list* l);
 void shell_sort(list* l);
+void counting_sort(list *l);
+

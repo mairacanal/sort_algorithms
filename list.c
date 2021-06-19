@@ -87,9 +87,9 @@ long max_element(list* l) {
     return max;
 }
 
-/* Counting sort function */
+/* Counting sort subfunction of Radix Sort */
 
-void counting_sort(list *l, long position) {
+void radix_counting_sort(list *l, long position) {
 
     int k = 10;
     long *count = (long *) calloc(k, sizeof(long));
@@ -98,7 +98,7 @@ void counting_sort(list *l, long position) {
 
     for(int i = 0; i < l->size; i++) {
         key = l->elements[i]/position;
-        key = key % 10;
+        key = key % k;
         count[key]++;
     }
 
@@ -107,7 +107,7 @@ void counting_sort(list *l, long position) {
 
     for(int i = (l->size - 1); i >= 0; i--) {
         key = l->elements[i]/position;
-        key = key % 10;
+        key = key % k;
         count[key]--;
         final[count[key]] = l->elements[i];
     }
@@ -245,7 +245,7 @@ void radix_sort(list* l) {
     
     while (max/position > 0) {
         
-        counting_sort(l, position);
+        radix_counting_sort(l, position);
         position *= 10;
 
     }
@@ -319,5 +319,32 @@ void shell_sort(list* l) {
             l->elements[j + h] = key;
         }
     }
+
+}
+
+void counting_sort(list *l) {
+
+    long max = max_element(l);
+    long *count = (long *) calloc(max + 1, sizeof(long));
+    long *final = (long *) calloc(l->size, sizeof(long));
+    long key;
+
+    for(long i = 0; i < l->size; i++)
+        count[l->elements[i]]++;
+
+    for(long i = 1; i <= max; i++) 
+        count[i] += count[i - 1];
+
+    for(long i = (l->size - 1); i >= 0; i--) {
+        key = l->elements[i];
+        count[key]--;
+        final[count[key]] = l->elements[i];
+    }
+
+    for(long i = 0; i < l->size; i++) 
+        l->elements[i] = final[i];
+
+    free(count);
+    free(final);
 
 }
