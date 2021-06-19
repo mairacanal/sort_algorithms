@@ -21,7 +21,7 @@ void analysis(void (*sort)(list *), void (*numbers)(list *, long, long), long ma
 void testing_routine(void (*sort)(list *), long size, long max);
 
 int main(void) {
-    
+
     printf("BUBBLE SORT\n");
     printf("ORDEM ALEATÓRIA\n");
     analysis(bubble_sort, random_numbers, BUBBLE_SIZE);

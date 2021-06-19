@@ -269,6 +269,15 @@ void heapsort(list* l) {
 
 void insertion_sort(list* l) {
 
+    long j;
+    elem key;
+
+    for (long i = 1; i < l->size; i++) {
+        key = l->elements[i];
+        for (j = i - 1; j >= 0 && l->elements[j] > key; j--) 
+            l->elements[j + 1] = l->elements[j];
+        l->elements[j + 1] = key;
+    }
 
 }
 
@@ -288,5 +297,21 @@ void selection_sort(list* l) {
 }
 
 void shell_sort(list* l) {
+
+    long i, j;
+    long h = 1;
+    elem key;
+
+    while (h < l->size)
+        h = 3 * h + 1;
+
+    for (; h > 0; h = h/3) {
+        for (i = h; i < l->size; i++) {
+            key = l->elements[i];
+            for (j = i - h; j >= 0 && l->elements[j] > key; j-=h) 
+                l->elements[j + h] = l->elements[j];
+            l->elements[j + h] = key;
+        }
+    }
 
 }
