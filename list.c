@@ -139,6 +139,41 @@ void Heapify(list* l, long size, elem e) {
 
 }
 
+void merge(list* l, long begin, long end) {
+
+    if (begin >= end)
+        return;
+
+    long middle = (end + begin)/2;
+
+    merge(l, begin, middle);
+    merge(l, middle + 1, end);
+
+    long left = begin;
+    long right = middle + 1;
+    long size = end - begin + 1;
+    long k = 0;
+    elem *temp = (elem *) malloc(size * sizeof(elem));
+
+    while (left <= middle && right <= end)
+        if (l->elements[left] < l->elements[right])
+            temp[k++] = l->elements[left++];
+        else
+            temp[k++] = l->elements[right++];
+
+    while (left <= middle)
+        temp[k++] = l->elements[left++];
+
+    while (right <= end)
+        temp[k++] = l->elements[right++];
+
+    for (k = 0; k < size; k++) 
+        l->elements[k + begin] = temp[k];
+
+    free(temp);
+
+}
+
 // END PRIVATE FUNCTIONS ********************************************************
 
 /* Allocates space for list creation of a max size */
@@ -241,14 +276,9 @@ void quick_sort(list *l) {
 void radix_sort(list* l) {
 
     long max = max_element(l);
-    long position = 1;
-    
-    while (max/position > 0) {
-        
-        radix_counting_sort(l, position);
-        position *= 10;
 
-    }
+    for (long position = 1; max/position > 0; position *= 10)
+        radix_counting_sort(l, position);
 
 }
 
@@ -322,6 +352,8 @@ void shell_sort(list* l) {
 
 }
 
+/* Counting Sort function */
+
 void counting_sort(list *l) {
 
     long max = max_element(l);
@@ -346,5 +378,13 @@ void counting_sort(list *l) {
 
     free(count);
     free(final);
+
+}
+
+/* Merge Sort function */
+
+void merge_sort(list *l) {
+
+    merge(l, 0, l->size);
 
 }
